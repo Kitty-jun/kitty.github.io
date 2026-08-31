@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitty 君 | AI 行业从业者</title>
+    <link rel="icon" type="image/x-icon" href="bitbug_favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #00d4ff 0%, #7c3aed 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .bg-gradient-primary {
+            background: linear-gradient(135deg, #00d4ff 0%, #7c3aed 100%);
+        }
+        
+        .bg-gradient-accent {
+            background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+        }
+        
+        .floating-card {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-card:nth-child(2) {
+            animation-delay: 1s;
+        }
+        
+        .floating-card:nth-child(3) {
+            animation-delay: 2s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .glow-effect {
+            box-shadow: 0 0 40px rgba(0, 212, 255, 0.15);
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+        }
+        
+        .divider-gradient {
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.5), transparent);
+        }
+    </style>
+</head>
+<body>
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-effect">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full overflow-hidden bg-gradient-primary flex items-center justify-center">
+                    <img src="avatar.webp" alt="Kitty 君" class="w-full h-full object-cover" style="object-position: 20% center;">
+                </div>
+                <span class="text-xl font-semibold">Kitty 君</span>
+            </div>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#projects" class="text-gray-400 hover:text-white transition-colors">项目</a>
+                <a href="#about" class="text-gray-400 hover:text-white transition-colors">关于我</a>
+                <a href="#stats" class="text-gray-400 hover:text-white transition-colors">数据成果</a>
+                <a href="#skills" class="text-gray-400 hover:text-white transition-colors">核心能力</a>
+                <a href="#contact" class="text-gray-400 hover:text-white transition-colors">联系我</a>
+            </div>
+            <button class="md:hidden text-gray-400" id="menu-btn">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        <div class="md:hidden hidden glass-effect" id="mobile-menu">
+            <div class="px-6 py-4 flex flex-col gap-4">
+                <a href="#projects" class="text-gray-400 hover:text-white transition-colors">项目</a>
+                <a href="#about" class="text-gray-400 hover:text-white transition-colors">关于我</a>
+                <a href="#stats" class="text-gray-400 hover:text-white transition-colors">数据成果</a>
+                <a href="#skills" class="text-gray-400 hover:text-white transition-colors">核心能力</a>
+                <a href="#contact" class="text-gray-400 hover:text-white transition-colors">联系我</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-24 px-6 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-blue-900/20 to-transparent"></div>
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"></div>
+        
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-effect text-cyan-400 text-sm mb-6">
+                    <i class="fas fa-rocket"></i>
+                    <span>AI 产品经理 · 独立开发者</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                    Hello, I'm <span class="text-gradient">Kitty 君</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-400 mb-8 max-w-2xl mx-auto">
+                    8年产品经验，专注 AI 产品从 0 到 1 与商业化，也是能独立把想法做成上线产品的全栈实践者
+                </p>
+
+                <div class="inline-flex flex-wrap items-center justify-center gap-x-8 gap-y-4 px-8 py-5 rounded-2xl glass-effect mb-8">
+                    <div class="text-center">
+                        <div class="text-2xl md:text-3xl font-bold text-gradient">8年</div>
+                        <div class="text-gray-500 text-xs md:text-sm">产品经验</div>
+                    </div>
+                    <div class="w-px h-8 bg-gray-700"></div>
+                    <div class="text-center">
+                        <div class="text-2xl md:text-3xl font-bold text-gradient">300万+</div>
+                        <div class="text-gray-500 text-xs md:text-sm">用户产品</div>
+                    </div>
+                    <div class="w-px h-8 bg-gray-700"></div>
+                    <div class="text-center">
+                        <div class="text-2xl md:text-3xl font-bold text-gradient">4款</div>
+                        <div class="text-gray-500 text-xs md:text-sm">AI 产品上线</div>
+                    </div>
+                    <div class="w-px h-8 bg-gray-700"></div>
+                    <div class="text-center">
+                        <div class="text-2xl md:text-3xl font-bold text-gradient">165次</div>
+                        <div class="text-gray-500 text-xs md:text-sm">Skill 下载</div>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-center gap-4">
+                    <a href="#projects" class="px-8 py-3 rounded-full bg-gradient-primary text-white font-medium hover:opacity-90 transition-opacity">查看项目</a>
+                    <a href="#contact" class="px-8 py-3 rounded-full glass-effect text-white font-medium hover:bg-white/10 transition-colors">联系我</a>
+                </div>
+            </div>
+
+            <div class="flex justify-center items-end gap-6 md:gap-8 mb-12">
+                <div class="floating-card w-48 h-56 md:w-64 md:h-72 rounded-2xl overflow-hidden shadow-2xl glass-effect flex flex-col items-center justify-center gap-4 bg-gradient-accent">
+                    <i class="fas fa-chart-line text-5xl md:text-6xl text-white/90"></i>
+                    <span class="text-white/85 font-medium text-sm md:text-base tracking-wide">商业化增长</span>
+                </div>
+                <div class="floating-card w-40 h-48 md:w-56 md:h-64 rounded-2xl overflow-hidden shadow-2xl -mb-8 glass-effect flex flex-col items-center justify-center gap-4 bg-gradient-primary">
+                    <i class="fas fa-brain text-4xl md:text-5xl text-white/90"></i>
+                    <span class="text-white/85 font-medium text-sm md:text-base tracking-wide">AI 产品</span>
+                </div>
+                <div class="floating-card w-48 h-56 md:w-64 md:h-72 rounded-2xl overflow-hidden shadow-2xl flex flex-col items-center justify-center gap-4" style="background: linear-gradient(135deg, #7c3aed 0%, #ec4899 100%);">
+                    <i class="fas fa-rocket text-5xl md:text-6xl text-white/90"></i>
+                    <span class="text-white/85 font-medium text-sm md:text-base tracking-wide">从 0 到 1</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                    AI 产品 <span class="text-gradient">自主实践</span>
+                </h2>
+                <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+                    从产品定位、Prompt 工程到全栈开发上线，独立打造并持续迭代的一组 AI 产品与方法论工具
+                </p>
+                <div class="w-24 h-1 divider-gradient mx-auto mt-6"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="glass-effect rounded-2xl p-8 card-hover">
+                    <div class="flex items-start justify-between gap-4 mb-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 rounded-xl bg-gradient-primary flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-bullseye text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold">Fit简历</h3>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-xs font-medium whitespace-nowrap">已上线</span>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        独立设计并开发的岗位匹配微信小程序：从产品定位、PRD 撰写到六维评分引擎设计，覆盖硬性门禁与技能、经验、软实力等多维匹配，针对不同市场与层级设置差异化权重，完成从匹配评分到面试准备包的全链路 AI 报告生成。
+                    </p>
+                    <div class="flex items-end justify-between gap-6">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-sm">微信小程序</span>
+                            <span class="px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 text-sm">六维评分引擎</span>
+                            <span class="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-400 text-sm">全栈开发</span>
+                        </div>
+                        <div class="flex-shrink-0 text-center">
+                            <div class="w-20 h-20 rounded-xl overflow-hidden border border-white/10 cursor-zoom-in" onclick="openQrModal()">
+                                <img src="qrcode-fitresume.jpg" alt="Fit简历 小程序码" class="w-full h-full object-cover">
+                            </div>
+                            <span class="text-gray-500 text-xs mt-1 block">点击放大</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-effect rounded-2xl p-8 card-hover">
+                    <div class="flex items-start justify-between gap-4 mb-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 rounded-xl bg-gradient-accent flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-toolbox text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold">AI 求职工具箱</h3>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-xs font-medium whitespace-nowrap">4 模块 · 自用验证</span>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        基于 Claude Skill 机制搭建的一套流程自动化工具，涵盖简历建档、JD 匹配简历生成、ATS 兼容性检测、面试备考资料生成 4 个模块，形成一条完整的智能体工作流。
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-full bg-orange-500/20 text-orange-400 text-sm">Claude Skill</span>
+                            <span class="px-3 py-1 rounded-full bg-teal-500/20 text-teal-400 text-sm">流程自动化</span>
+                        </div>
+                        <a href="https://github.com/Kitty-jun/ai-qa-system" target="_blank" rel="noopener" class="text-cyan-400 hover:text-cyan-300 text-sm font-medium whitespace-nowrap">查看 <i class="fas fa-arrow-up-right-from-square text-xs"></i></a>
+                    </div>
+                </div>
+
+                <div class="glass-effect rounded-2xl p-8 card-hover">
+                    <div class="flex items-start justify-between gap-4 mb-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-sitemap text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold">knowledge-framework-builder</h3>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-xs font-medium whitespace-nowrap">165 次下载</span>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        面向任意行业的通用知识体系梳理方法论 Skill：分阶段引导、MECE 提纯、四类逻辑线搭建、专业查漏补缺，产出脑图大纲、关联对照表与知识图谱。发布至 SkillHub 后已被使用者下载 165 次。
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-400 text-sm">方法论</span>
+                            <span class="px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 text-sm">SkillHub</span>
+                        </div>
+                        <a href="https://skillhub.cn/skills/user_fe9193fa/knowledge-framework-builder" target="_blank" rel="noopener" class="text-cyan-400 hover:text-cyan-300 text-sm font-medium whitespace-nowrap">查看 <i class="fas fa-arrow-up-right-from-square text-xs"></i></a>
+                    </div>
+                </div>
+
+                <div class="glass-effect rounded-2xl p-8 card-hover">
+                    <div class="flex items-start justify-between gap-4 mb-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-puzzle-piece text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold">慧眼AI</h3>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-xs font-medium whitespace-nowrap">已上线</span>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        面向 HR / 招聘方视角的简历-JD 匹配 Chrome 插件，复用「Fit简历」同源的六维评分引擎，把匹配能力从 C 端小程序延伸到浏览器端，支持批量岗位筛选，并探索多模型、多招聘平台适配。
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-sm">Chrome 插件</span>
+                        <span class="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-400 text-sm">B端产品</span>
+                        <span class="px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-400 text-sm">批量筛选</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                        Where I <span class="text-gradient">drive</span> revenue
+                    </h2>
+                    <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                        作为一名资深的AI产品经理，我在B端和C端领域都拥有丰富的产品经验。从SaaS产品的商业化到AI驱动的创新解决方案，我致力于帮助企业实现数字化转型和营收增长。
+                    </p>
+                    <p class="text-gray-400 leading-relaxed">
+                        我相信AI技术能够深刻改变我们的工作方式，通过智能体工作流和自动化解决方案，帮助团队提升效率、降低成本，实现真正的数字化升级。
+                    </p>
+                </div>
+                <div class="glass-effect rounded-3xl p-10 glow-effect grid grid-cols-2 gap-8">
+                    <div class="text-center">
+                        <div class="w-14 h-14 mx-auto rounded-xl bg-gradient-primary flex items-center justify-center mb-3">
+                            <i class="fas fa-award text-white text-xl"></i>
+                        </div>
+                        <div class="text-3xl font-bold text-gradient mb-1">8年</div>
+                        <div class="text-gray-400 text-sm">产品经理经验</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-14 h-14 mx-auto rounded-xl bg-gradient-accent flex items-center justify-center mb-3">
+                            <i class="fas fa-brain text-white text-xl"></i>
+                        </div>
+                        <div class="text-3xl font-bold text-gradient mb-1">3年+</div>
+                        <div class="text-gray-400 text-sm">AI / AIGC 产品</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-14 h-14 mx-auto rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center mb-3">
+                            <i class="fas fa-layer-group text-white text-xl"></i>
+                        </div>
+                        <div class="text-3xl font-bold text-gradient mb-1">B端+C端</div>
+                        <div class="text-gray-400 text-sm">全场景产品经验</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-14 h-14 mx-auto rounded-xl bg-gradient-to-br from-indigo-500 to-pink-500 flex items-center justify-center mb-3">
+                            <i class="fas fa-users text-white text-xl"></i>
+                        </div>
+                        <div class="text-3xl font-bold text-gradient mb-1">11人</div>
+                        <div class="text-gray-400 text-sm">团队管理经验</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="stats" class="py-24 px-6 bg-gradient-to-b from-transparent via-blue-900/10 to-transparent">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="stat-card rounded-2xl p-6 text-center card-hover">
+                    <div class="text-4xl md:text-5xl font-bold text-gradient mb-2">1.2亿+</div>
+                    <div class="text-gray-400">累计营收</div>
+                </div>
+                <div class="stat-card rounded-2xl p-6 text-center card-hover">
+                    <div class="text-4xl md:text-5xl font-bold text-gradient mb-2">300万</div>
+                    <div class="text-gray-400">用户规模</div>
+                </div>
+                <div class="stat-card rounded-2xl p-6 text-center card-hover">
+                    <div class="text-4xl md:text-5xl font-bold text-gradient mb-2">60+</div>
+                    <div class="text-gray-400">服务机构</div>
+                </div>
+                <div class="stat-card rounded-2xl p-6 text-center card-hover">
+                    <div class="text-4xl md:text-5xl font-bold text-gradient mb-2">80%</div>
+                    <div class="text-gray-400">成本降低</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                    How I <span class="text-gradient">move</span> the needle
+                </h2>
+                <div class="w-24 h-1 divider-gradient mx-auto mt-6"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="glass-effect rounded-2xl p-8 card-hover">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-14 h-14 rounded-xl bg-gradient-accent flex items-center justify-center">
+                            <i class="fas fa-chart-line text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold">商业化与营收</h3>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        主导 2 款音视频 SaaS 产品从 0 到 1 建设，累计创造超 1.2 亿元营收，单产品曾实现季度营收环比增长 140%。在 C 端成功优化商品与转化路径，3 个月内提升支付转化率 5 个百分点、复购率 7 个百分点。
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-sm">SaaS</span>
+                        <span class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-sm">C端产品</span>
+                        <span class="px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 text-sm">营收增长</span>
+                    </div>
+                </div>
+
+                <div class="glass-effect rounded-2xl p-8 card-hover">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-14 h-14 rounded-xl bg-gradient-primary flex items-center justify-center">
+                            <i class="fas fa-brain text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold">AI/技术创新与降本</h3>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        打造行业首款 AI 数字人教学产品，落地 60+教育机构，助其降低 80% 的特定场景运营成本。主导构建支撑日均百万级并发的直播架构。
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-400 text-sm">AI数字人</span>
+                        <span class="px-3 py-1 rounded-full bg-orange-500/20 text-orange-400 text-sm">直播架构</span>
+                        <span class="px-3 py-1 rounded-full bg-pink-500/20 text-pink-400 text-sm">技术降本</span>
+                    </div>
+                </div>
+
+                <div class="glass-effect rounded-2xl p-8 card-hover">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center">
+                            <i class="fas fa-users text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold">C端产品与生态</h3>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        负责 300 万用户的 App 产品，主导图像引擎升级至 600dpi 打印分辨率。从 0 到 1 搭建 UGC 内容生态，实现用户停留时长提升 30%，社区核心创作者数超 500。
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-sm">App产品</span>
+                        <span class="px-3 py-1 rounded-full bg-pink-500/20 text-pink-400 text-sm">UGC生态</span>
+                        <span class="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-sm">用户增长</span>
+                    </div>
+                </div>
+
+                <div class="glass-effect rounded-2xl p-8 card-hover">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center">
+                            <i class="fas fa-users-cog text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold">团队与执行力</h3>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        曾管理 11 人产研团队并获得公司年度 Top 级奖项。通过建立数据驱动与敏捷流程，将产品稳定性提升 50%。
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-400 text-sm">团队管理</span>
+                        <span class="px-3 py-1 rounded-full bg-teal-500/20 text-teal-400 text-sm">敏捷流程</span>
+                        <span class="px-3 py-1 rounded-full bg-yellow-500/20 text-yellow-400 text-sm">数据驱动</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 px-6 bg-gradient-to-b from-transparent via-purple-900/10 to-transparent">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Get in <span class="text-gradient">touch</span></h2>
+                <p class="text-gray-400 text-lg">期待与您探讨AI产品和商业化的无限可能</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="glass-effect rounded-2xl p-8">
+                    <h3 class="text-xl font-semibold mb-6">联系方式</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center">
+                                <i class="fab fa-redhat text-red-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm text-gray-500">小红书</div>
+                                <div class="text-lg font-medium">Kitty宝邶</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center">
+                                <i class="fab fa-weixin text-green-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm text-gray-500">微信</div>
+                                <div class="text-lg font-medium">liangqijun</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-effect rounded-2xl p-8">
+                    <h3 class="text-xl font-semibold mb-6">快速联系</h3>
+                    <form id="contact-form">
+                        <div class="mb-4">
+                            <input type="text" placeholder="您的姓名" class="w-full px-4 py-3 rounded-xl bg-white/5 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent">
+                        </div>
+                        <div class="mb-4">
+                            <input type="email" placeholder="您的邮箱" class="w-full px-4 py-3 rounded-xl bg-white/5 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent">
+                        </div>
+                        <div class="mb-6">
+                            <textarea placeholder="留言内容" rows="4" class="w-full px-4 py-3 rounded-xl bg-white/5 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-4 rounded-xl bg-gradient-primary text-white font-medium hover:opacity-90 transition-opacity">
+                            发送消息
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 px-6 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full overflow-hidden bg-gradient-primary flex items-center justify-center">
+                        <img src="avatar.webp" alt="Kitty 君" class="w-full h-full object-cover" style="object-position: 20% center;">
+                    </div>
+                    <span class="text-xl font-semibold">Kitty 君</span>
+                </div>
+                <div class="flex justify-center gap-6">
+                    <a href="#" class="social-icon w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-gradient-primary hover:text-white">
+                        <i class="fab fa-weibo"></i>
+                    </a>
+                    <a href="#" class="social-icon w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-gradient-primary hover:text-white">
+                        <i class="fab fa-wechat"></i>
+                    </a>
+                    <a href="#" class="social-icon w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-gradient-primary hover:text-white">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+                <p class="text-gray-500 text-sm">© 2026 Kitty 君. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="qr-modal" class="hidden fixed inset-0 z-50 bg-black/80 flex items-center justify-center px-6" onclick="closeQrModal()">
+        <div class="bg-white rounded-2xl p-6 max-w-xs w-full text-center" onclick="event.stopPropagation()">
+            <img src="qrcode-fitresume.jpg" alt="Fit简历 小程序码" class="w-full h-auto rounded-lg">
+            <p class="text-gray-600 text-sm mt-4">微信扫码体验 Fit简历</p>
+            <button onclick="closeQrModal()" class="mt-4 px-6 py-2 rounded-full bg-gray-900 text-white text-sm">关闭</button>
+        </div>
+    </div>
+
+    <script>
+        function openQrModal() {
+            document.getElementById('qr-modal').classList.remove('hidden');
+        }
+        function closeQrModal() {
+            document.getElementById('qr-modal').classList.add('hidden');
+        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeQrModal();
+        });
+
+        document.getElementById('menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('感谢您的留言！我会尽快回复您。');
+            this.reset();
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
